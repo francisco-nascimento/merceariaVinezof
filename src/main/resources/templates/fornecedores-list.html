@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Vinezof - Cadastro de Fornecedores</title>
+
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="container">
+		<h5>Criar / Editar um fornecedor:</h5>
+		<form class="form-narrow form-horizontal" method="post">
+			<input type="hidden" id="id" />
+			<table class="table table-striped">
+				<tr>
+					<td><input type="text" size="50"
+						placeholder="Digite o nome do fornecedor" /></td>
+					<td><input type="text" size="20"
+						placeholder="Digite o cnpj do fornecedor" /></td>						
+					<td><button type="submit" class="btn">Salvar</button></td>
+					<td><button type="reset" class="btn">Limpar</button></td>
+				</tr>
+			</table>
+		</form>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Walmart Alimentos</td>					
+					<td><a class="btn btn-warning">Editar</a></td>
+					<td><a class="btn btn-warning">Remover</a></td>
+				</tr>
+				<tr>
+					<td>Frigorífico Boi Manso</td>
+					<td><a class="btn btn-warning">Editar</a></td>
+					<td><a class="btn btn-warning">Remover</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h6>
+			<a href="/vinezof">Home</a>
+		</h6>
+	</div>
+</body>
+</html>

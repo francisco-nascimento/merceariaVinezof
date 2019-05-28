@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="httP://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+
+<th:block th:fragment="headerBlock">
+
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</th:block>
+
+<title>Mercearia do Seu Vinezof :: Home</title>
+
+</head>
+<body>
+	<th:block th:fragment="navBar">
+		<nav class="navbar navbar-default navbar-static-top"
+			th:fragment="header">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/vinezof">:: Mercearia ::</a>
+				</div>
+				<div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"> Cadastro<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/categorias">Categoria</a></li>
+									<li><a href="/fornecedores">Fornecedor</a></li>
+									<li><a href="/produtos">Produto</a></li>
+									<li role="separator" class="divider"></li>
+									<li class="dropdown-header">Vendas</li>
+									<li><a href="/pagamentos">Forma de Pagamento</a></li>
+									<li><a href="/clientes">Cliente</a></li>
+									<li><a href="/vendedores">Vendedor</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"> Operação<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/registrarVenda">Registrar venda</a></li>
+									<li><a href="/pesquisarVendas">Pesquisar vendas</a></li>
+									<li><a href="/emitirRelatorioVendas">Emitir relatório</a></li>
+								</ul></li>
+						</ul>
+
+						<ul class="nav navbar-right">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Usuário logado: Admin</a>
+								<ul class="dropdown-menu">
+									<li><a>Criar usuário</a></li>
+									<li><a>Listar usuários</a></li>
+									<li>
+										<form method="post">
+											<button type="submit" class="btn">
+												<span class="glyphicon glyphicon-log-out"></span> Sair
+											</button>
+										</form>
+									</li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</th:block>
+	<!-- /.container -->
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Vinezof - Cadastro de Produtos</title>
+<link href="modal.css" rel="stylesheet" />
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="container">
+
+		<!-- Form para pesquisa produto  -->
+		<form th:action="@{/produtos}" method="post">
+			<h3 class="modal-header modal-header-warning">
+				<i class="glyphicon glyphicon-th-list"></i> Lista de Produtos 
+				<span class="pull-right">
+					<input type="text" name="nomePesquisa"
+					id="nomePesquisa" placeholder="Digite um nome"
+					class="btn btn-default btn-sm" />
+					<button type="submit" class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-search"></span> Pesquisar
+					</button>
+					</span>
+			</h3>
+		</form>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Categoria</th>
+					<th>Preço</th>
+					<th>Quantidade</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prod : ${listaProdutos}">
+					<td th:text="${prod.nome}"></td>
+					<td th:text="${prod.categoria.nome}"></td>
+					<td th:text="${#numbers.formatCurrency(prod.preco)}"></td>
+					<td th:text="${prod.quantidadeEstoque}"></td>
+					<td><a class="btn btn-warning"
+						th:href="|/produtosForm?id=${prod.id}|">Editar</a></td>
+					<td><a class="btn btn-warning"
+						th:href="|/produtosRem?id=${prod.id}|">Remover</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="btn btn-warning" th:href="@{/produtosForm}"> <i
+				class="glyphicon glyphicon-plus"></i> Novo Produto
+			</a>
+		</div>
+		<h6>
+			<a href="/vinezof">Home</a>
+		</h6>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Vinezof - Cadastro de Produtos</title>
+<link href="modal.css" rel="stylesheet" />
+<script type="text/javascript" src="util.js"></script>
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="container">
+
+		<!-- Modal -->
+		<div class="modal fade" id="divModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form role="form" action="/produtos" method="post" id="formProd"
+						th:object="${produto}" class="well form-horizontal">
+						<input type="hidden" id="idProduto" th:field="*{id}"/>
+						<div class="modal-header modal-header-warning">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h2>
+								<i class="glyphicon glyphicon-user"></i> Criar / Editar Produto
+							</h2>
+						</div>
+						<div class="modal-body">
+							<div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">Nome</label>
+									<div class="col-md-8 inputGroupContainer">
+										<div class="input-group">
+											<input type="text" id="nome" name="nome" size="50"
+												placeholder="Nome do produto" th:field="*{nome}"
+												class="form-control" required="required"
+												th:errorclass="fieldError"> <span class="error"
+												th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label">Categoria</label>
+									<div class="col-md-8 inputGroupContainer">
+										<div class="input-group">
+											<select th:field="*{categoria}">
+												<option th:each="cat : ${listaCategorias}"
+													th:text="${cat.nome}" th:value="${cat.id}"></option>
+											</select> <span class="error" th:if="${#fields.hasErrors('categoria')}"
+												th:errors="*{categoria}"></span>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label">Preço</label>
+									<div class="col-md-8 inputGroupContainer">
+										<div class="input-group">
+											<input type="text" id="preco" name="preco"
+												placeholder="Preço do produto" th:field="*{preco}"
+												class="form-control" required="required"> <span
+												class="error" th:if="${#fields.hasErrors('preco')}"
+												th:errors="*{preco}"></span>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label">Fornecedor</label>
+									<div class="col-md-8 inputGroupContainer">
+										<div class="input-group">
+											<select th:field="*{fornecedor}">
+												<option th:each="forn : ${listaFornecedores}"
+													th:text="${forn.nome}" th:value="${forn.id}"></option>
+											</select>
+																							<span class="error"
+												th:if="${#fields.hasErrors('fornecedor')}"
+												th:errors="*{fornecedor}"></span>
+											
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">Estoque</label>
+									<div class="col-md-8 inputGroupContainer">
+										<div class="input-group">
+											<input type="number" id="quantidadeEstoque"
+												name="quantidadeEstoque"
+												placeholder="Quantidade de produtos"
+												th:field="*{quantidadeEstoque}" class="form-control"
+												required="required">
+																								<span class="error"
+												th:if="${#fields.hasErrors('quantidadeEstoque')}"
+												th:errors="*{quantidadeEstoque}"></span>
+												
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="clearfix"></div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger pull-left"
+								data-dismiss="modal">Fechar</button>
+							<button type="submit" class="btn btn-primary pull-right">Salvar</button>
+						</div>
+					</form>
+
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Categoria</th>
+					<th>Preço</th>
+					<th>Quantidade</th>
+					<th>Editar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prod : ${listaProdutos}">
+					<td th:text="${prod.nome}"></td>
+					<td th:text="${prod.categoria.nome}"></td>
+					<td th:text="${#numbers.formatCurrency(prod.preco)}"></td>
+					<td th:text="${prod.quantidadeEstoque}"></td>
+					<td><a class="btn btn-warning" th:href="|/produtos?id=${prod.id}|" data-toogle="modal">Editar</a></td>
+					<td><a class="btn btn-warning">Remover</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="btn btn-warning" th:href="@{/produtos}" data-target="#divModal" data-toggle="modal"><i
+				class="glyphicon glyphicon-briefcase"></i>Novo Produto</a>
+		</div>
+		<h6>
+			<a href="/vinezof">Home</a>
+		</h6>
+	</div>
+<script type="text/javascript">
+// Abrir o modal sempre que tiver editando ou com mensagem de erro
+$(document).ready(function() {
+	if ($('#idProduto').val() > 0){
+		$('#divModal').modal('show');	
+	}
+})
+</script>
+	
+</body>
+</html>
